@@ -34,7 +34,7 @@ public class Publish {
 
             producer.send(textMessage);
 //            session.commit(); //因为开启session的 ，选择了 false ，这里不能使用commit
-            Thread.sleep(30000);
+
             session.close();
             connection.close();
         } catch (Exception e) {

@@ -1,6 +1,5 @@
 package com.ltx.p2p;
 
-
 import org.apache.activemq.ActiveMQConnection;
 import org.apache.activemq.ActiveMQConnectionFactory;
 
@@ -42,8 +41,11 @@ public class Receiver {
             // 获取session注意参数值xingbo.xu-queue是一个服务器的queue，须在在ActiveMq的console配置
             destination = session.createQueue("FirstQueue");
             consumer = session.createConsumer(destination);
+
+            //获取消息的两种方式
+            //1.同步，等待  （阻塞代码 finally 不会执行）
             while (true) {
-                // 设置接收者接收消息的时间，为了便于测试，这里谁定为100s
+                // 设置接收者接收消息的时间，为了便于测试，这里接受信息有为100s
                 TextMessage message = (TextMessage) consumer.receive(100000);
                 if (null != message) {
                     System.out.println("收到消息" + message.getText());
@@ -51,6 +53,18 @@ public class Receiver {
                     break;
                 }
             }
+
+            //2.异步，回调  （不阻塞， finally 不会执行）
+//            consumer.setMessageListener(new MessageListener() {
+//                @Override
+//                public void onMessage(Message message) {
+//                    try {
+//                        System.out.println("收到消息" + ((TextMessage)message).getText());
+//                    } catch (JMSException e) {
+//                        e.printStackTrace();
+//                    }
+//                }
+//            });
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
