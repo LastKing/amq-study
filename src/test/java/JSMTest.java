@@ -17,10 +17,10 @@ import javax.annotation.Resource;
 @ContextConfiguration({"classpath:spring-jms.xml"})
 public class JSMTest {
     @Resource
-    SpringConsumer springConsumer;
+    private SpringConsumer springConsumer;
 
     @Resource
-    SpringProducer springProducer;
+    private SpringProducer springProducer;
 
     @Test
     public void test() {
