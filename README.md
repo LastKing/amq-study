@@ -4,7 +4,7 @@
 1. [JMS的实现者ActiveMQ的queue和topic的基本实例](http://blog.csdn.net/qq383264679/article/details/51163144)
     需要注意，这里面事物开关，以及 connection和session的开关。
 2. [JMS中消息的两种消费方式]
-
+3. [Spring 整合，单纯的spring 整合](http://blog.csdn.net/yuguiyang1990/article/details/12714291)
 
 
 
