@@ -5,7 +5,7 @@
     需要注意，这里面事物开关，以及 connection和session的开关。
 2. [JMS中消息的两种消费方式]
 3. [Spring 整合，单纯的spring 整合](http://blog.csdn.net/yuguiyang1990/article/details/12714291)
-
+4. [Spring-jms 模块详解 JMSTemplate](http://www.cnblogs.com/davidwang456/p/4451757.html)
 
 
 

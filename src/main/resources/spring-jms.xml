@@ -2,10 +2,17 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xmlns:jms="http://www.springframework.org/schema/jms"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--<amq:connectionFactory id="amqConnectionFactory" brokerURL="tcp://127.0.0.1:61616"-->
+                           <!--userName="admin" password="admin"/>-->
+
+
     <!-- 1.配置connectionFactory -->
-    <bean id="jmsFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+    <bean id="connectionFactory" class="org.apache.activemq.pool.PooledConnectionFactory" destroy-method="stop">
+        <!--<constructor-arg ref="amqConnectionFactory"/>-->
         <property name="connectionFactory">
             <bean class="org.apache.activemq.ActiveMQConnectionFactory">
                 <property name="brokerURL" value="tcp://127.0.0.1:61616"/>
@@ -22,8 +29,8 @@
 
     <!-- 3.配置Spring JMS Template -->
     <bean id="jmsTemplate" class="org.springframework.jms.core.JmsTemplate">
-        <!-- 3.1 注入jmsFactory -->
-        <property name="connectionFactory" ref="jmsFactory"/>
+        <!-- 3.1 注入connectionFactory -->
+        <property name="connectionFactory" ref="connectionFactory"/>
 
         <!-- 3.2 配置消息目标 -->
         <property name="defaultDestination" ref="destination"/>
@@ -35,12 +42,12 @@
     <!-- xml 方式 -->
     <!--&lt;!&ndash; 4.配置生产者 &ndash;&gt;-->
     <!--<bean id="springProducer" class="com.spring.SpringProducer">-->
-        <!--<property name="jmsTemplate" ref="jmsTemplate"/>-->
+    <!--<property name="jmsTemplate" ref="jmsTemplate"/>-->
     <!--</bean>-->
 
     <!--&lt;!&ndash; 5.配置消费者 &ndash;&gt;-->
     <!--<bean id="springConsumer" class="com.spring.SpringConsumer">-->
-        <!--<property name="jmsTemplate" ref="jmsTemplate"/>-->
+    <!--<property name="jmsTemplate" ref="jmsTemplate"/>-->
     <!--</bean>-->
 
 </beans>
